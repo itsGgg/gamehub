@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Connect 4 - GameHub</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+    <link href="/css/main.css" rel="stylesheet">
+    <link href="/css/connect4.css" rel="stylesheet">
+    <link href="/css/invitations.css" rel="stylesheet">
+</head>
+<body class="gh-page">
+    <%- include('partials/navbar', { user: user }) %>
+    <%- include('partials/alert') %>
+    <%- include('partials/invitation-notification') %>
+
+    <main class="container py-4">
+        <div class="text-center mb-3">
+            <h1 class="gh-game-title">Connect 4</h1>
+            <p id="c4-status" class="lead text-muted mb-1">Chargement...</p>
+            <p id="c4-players" class="text-muted small mb-0"></p>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-8 d-flex justify-content-center mb-4">
+                <div class="c4-stage">
+                    <div id="c4-columns" class="c4-columns"></div>
+                    <div id="c4-board" class="c4-board"></div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="c4-chat-panel">
+                    <h6 class="c4-chat-title">Chat</h6>
+                    <div id="c4-messages" class="c4-messages"></div>
+                    <form id="c4-chat-form" class="d-flex">
+                        <input id="c4-chat-input"
+                               class="form-control form-control-sm mr-2"
+                               maxlength="500"
+                               placeholder="Message..." autocomplete="off">
+                        <button type="submit" class="btn btn-sm btn-primary">
+                            Envoyer
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-2">
+            <button id="c4-restart" class="btn btn-warning m-1" disabled>
+                Rejouer
+            </button>
+            <button id="c4-resign" class="btn btn-danger m-1">
+                Abandonner
+            </button>
+            <a href="/" class="btn btn-secondary m-1">Quitter</a>
+        </div>
+    </main>
+
+    <script>
+        window.GAME_ID = <%= gameId %>;
+        window.USER_ID = <%= user.id %>;
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/js/navbar.js"></script>
+    <script src="/js/connect4.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
+    <script src="/js/invitation-notifications.js"></script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<aside class="gh-players-sidebar" id="playersSidebar">
+  <div class="d-flex align-items-center justify-content-between mb-2">
+    <h5 class="mb-0">Joueurs</h5>
+    <button
+      type="button"
+      id="closePlayersSidebarBtn"
+      class="btn btn-sm btn-light"
+    >
+      ✕
+    </button>
+  </div>
+
+  <div class="gh-players-search">
+    <input
+      type="text"
+      id="playersSearchInput"
+      class="form-control form-control-sm"
+      placeholder="Chercher..."
+    />
+    <button class="btn btn-sm btn-primary" id="playersSearchBtn" type="button">
+      Recherche
+    </button>
+  </div>
+
+  <div class="custom-control custom-switch mb-2" id="filtreWrap" style="display:none">
+    <input type="checkbox" class="custom-control-input" id="filtreCommun">
+    <label class="custom-control-label small" for="filtreCommun">Préférences communes</label>
+  </div>
+
+  <small class="text-muted" id="playersCount" style="display:block;margin-bottom:0.5rem"></small>
+
+  <div id="playersList" class="gh-players-list">
+    <div class="text-muted small">Chargement...</div>
+  </div>
+</aside>

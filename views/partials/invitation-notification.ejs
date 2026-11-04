@@ -1,0 +1,74 @@
+<!-- Popup reçu par B : invitation de A -->
+<div
+  class="modal fade"
+  id="invitationNotificationModal"
+  tabindex="-1"
+  role="dialog"
+  aria-hidden="true"
+  data-backdrop="static"
+  data-keyboard="false"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="invitationSender">Invité</h5>
+      </div>
+      <div class="modal-body">
+        <p id="invitationGame"></p>
+        <small class="text-muted">Temps restant : <span id="invitationCountdown">30</span>s</small>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" id="invitationConfirm">
+          Accepter
+        </button>
+        <button type="button" class="btn btn-danger" id="invitationReject">
+          Refuser
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Popup de confirmation rejoindre le salon -->
+<div
+  class="modal fade"
+  id="gameReadyModal"
+  tabindex="-1"
+  role="dialog"
+  aria-hidden="true"
+  data-backdrop="static"
+  data-keyboard="false"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Salon de jeu</h5>
+      </div>
+      <div class="modal-body">
+        <p id="gameReadyMessage">La partie est prête. Voulez-vous rejoindre le salon de jeu ?</p>
+        <div id="gameReadyCountdownWrap">
+          <small class="text-muted">Temps restant : <span id="gameReadyCountdown">30</span>s</small>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" id="joinGameConfirm">Rejoindre</button>
+        <button type="button" class="btn btn-secondary" id="joinGameCancel">Annuler</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- msg d'information (refus, ignorement, annulation) -->
+<div
+  id="invitationInfoToast"
+  class="alert alert-info shadow"
+  style="position:fixed;bottom:1.5rem;right:1.5rem;z-index:9999;min-width:280px;display:none"
+>
+  <span id="invitationInfoMessage"></span>
+</div>
+
+<% if (typeof user !== 'undefined' && user) { %>
+  <script>
+    window.CURRENT_USER_ID = <%= user.id %>;
+  </script>
+<% } %>

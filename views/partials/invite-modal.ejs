@@ -1,0 +1,51 @@
+<div
+  class="modal fade"
+  id="inviteModal"
+  tabindex="-1"
+  role="dialog"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="inviteModalTitre">Inviter un joueur</h5>
+        <button type="button" class="close" data-dismiss="modal">
+          <span>&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="inviteForm">
+          <input type="hidden" id="invite_player_id" />
+
+          <p class="invite-player-line">
+            Joueur : <strong id="invite_player_name"></strong>
+          </p>
+
+          <div class="form-group">
+            <label for="invite_game">Jeu</label>
+            <select id="invite_game" class="form-control">
+              <option value="">— Choisir —</option>
+            </select>
+          </div>
+
+          <div class="form-group" id="inviteDatetimeWrap" style="display: none">
+            <label for="inviteDatetime">Date et heure</label>
+            <input
+              type="datetime-local"
+              id="inviteDatetime"
+              class="form-control"
+              lang="fr"
+              max="2099-12-31T23:59"
+            />
+          </div>
+
+          <div class="text-right">
+            <button type="submit" class="btn btn-primary" id="inviteSubmitBtn">
+              Envoyer
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

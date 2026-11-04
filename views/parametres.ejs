@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Paramètres</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/main.css" rel="stylesheet">
+</head>
+
+<body class="gh-page">
+    <%- include('partials/navbar', { user: currentUser }) %>
+
+    <main class="container py-5">
+        <div class="gh-auth-shell mx-auto">
+            <section class="gh-auth-card">
+                <h1 class="h3 mb-1">Paramètres</h1>
+                <% const account = currentUser || user; %>
+              
+
+                <form action="/disponibilite" method="post" class="mb-2">
+                      <p class="mb-0">Statut actuel: <strong id="availability-state"><%= account && account.is_available ? 'Disponible' : 'Indisponible' %></strong></p>
+                    <button type="submit" class="btn btn-primary availability-toggle">
+                        <%= account && account.is_available ? 'Passer indisponible' : 'Passer disponible' %>
+                    </button>
+                </form>
+
+                <% for(let i=0; i<champs.length;i++) {%>
+                                        <p class="mb-0"> <%= champs[i].key.replace(/_/g, ' ') %><%= champs[i].key === 'mot_de_passe' ? '' : ' :' %>
+                                                <% if (champs[i].key === 'mot_de_passe') { %>
+                                                    ********
+                                                <% } else { %>
+                                                    <%= user[champs[i].key] %>
+                                                <% } %>
+                                        </p>
+
+                                        <form action="/parametres/edit" method="get" class="mb-2">
+                                            <input type="hidden" name="champ" value="<%=champs[i].key%>">
+                                            <button type="submit" class="btn btn-primary">
+                                                <%=champs[i].label %>
+                                            </button>
+                                        </form>
+                <% } %>
+
+                <hr>
+                <h2 class="h5">Préférences jeux</h2>
+                <form action="/parametres/preferences" method="post" class="mb-2">
+                    <% const availableGames = games || []; %>
+                    <% const selected = selectedPreferences || []; %>
+
+                    <% if (availableGames.length) { %>
+                        <% for (let i = 0; i < availableGames.length; i++) { %>
+                            <% const g = availableGames[i]; %>
+                            <div class="form-check">
+                                <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    name="preferences[]"
+                                    id="pref_game_<%= g.id %>"
+                                    value="<%= g.id %>"
+                                    <%= selected.indexOf(g.id) !== -1 ? 'checked' : '' %>
+                                >
+                                <label class="form-check-label" for="pref_game_<%= g.id %>"><%= g.name %></label>
+                            </div>
+                        <% } %>
+                    <% } else { %>
+                        <small class="text-muted">Aucun jeu disponible.</small>
+                    <% } %>
+
+                    <button type="submit" class="btn btn-primary mt-2">Enregistrer préférences</button>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/js/navbar.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
